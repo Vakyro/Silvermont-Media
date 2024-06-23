@@ -1,0 +1,89 @@
+---
+import Logo from './Logo.astro';
+---
+
+<header id="landing-header" class="z-40 py-0 sm:py-4 px-2 sm:px-10 shadow-none bg-transparent flex items-center top-0 w-full justify-between text-black">
+    <div class="flex flex-grow justify-center basis-0">
+        <a href="/"><Logo /></a> 
+    </div>
+<!-- 
+    <nav class="flex flex-grow basis-0 justify-end">
+        <ul class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2">
+            <li><a class="hover:text-yellow-500 ease-in-out transition-colors duration-500" href="/">Home</a></li>
+        </ul>
+    </nav>
+
+    <div class="flex flex-grow basis-0 sm:hidden justify-end ">
+        <button class="mobile-menu-button">
+            <svg class="hover:text-yellow-500 ease-in-out transition-colors duration-500 cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+        </button>
+        <button class="mobile-menu-buttonX hidden">
+            <svg class="hover:text-yellow-500 ease-in-out transition-colors duration-500 cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+            </svg>
+        </button>
+    </div>
+
+    <nav class="text-white Nav hidden mobile-menu md:hidden fixed left-0 top-0 w-[60%] h-full border-r border-gray-900 bg-[#000300] ease-in-out duration-300 animate-fade-right">
+        <div class="w-full text-3xl font-bold m-4">
+            <Logo />
+        </div>
+        <ul class="[&>li]:p-4 [&>li]:border-b [&>li]:border-gray-600 p-4 uppercase">
+            <li><a class="hover:text-yellow-500 ease-in-out transition-colors duration-500 text-sm" href="/">Home</a></li>
+            <li><a class="hover:text-yellow-500 ease-in-out transition-colors duration-500 text-sm" href="/Iguala">Iguala</a></li>
+            <li><a class="hover:text-yellow-500 ease-in-out transition-colors duration-500 text-sm" href="/Proyecto">Proyecto</a></li>
+        </ul>
+    </nav>
+-->
+    <div id="menu-backdrop" class={`
+        absolute bg-black/5 backdrop-blur-lg rounded 
+        left-[var(--left)] top-[var(--top)]
+        h-[var(--height)] w-[var(--width)]
+        transition-all duration-300 delay-75
+        ease-in-out opacity-0 -z-10
+    `}
+    />
+</header>
+
+
+<script>
+    const listItem = document.querySelectorAll("#landing-header li")
+    const menuBackDrop = document.querySelector('#menu-backdrop') as HTMLElement
+    listItem.forEach((item) =>{
+        item.addEventListener("mouseenter", () => {
+            const { left, top, width, height } = item.getBoundingClientRect()
+            menuBackDrop.style.setProperty("--left", `${left}px`)
+            menuBackDrop.style.setProperty("--top", `${top}px`)
+            menuBackDrop.style.setProperty("--height", `${height}px`)
+            menuBackDrop.style.setProperty("--width", `${width}px`)
+            menuBackDrop.style.opacity = "1"
+            menuBackDrop.style.visibility = "visible"
+        })
+
+        item.addEventListener("mouseleave", () => {
+            menuBackDrop.style.opacity = "0"
+            menuBackDrop.style.visibility = "hidden"
+        })
+    })
+</script>
+
+<script>
+    const button = document.querySelector('.mobile-menu-button')
+    const buttonX = document.querySelector('.mobile-menu-buttonX')
+    const menu = document.querySelector('.mobile-menu')
+    const Nav = document.querySelector('.Nav')
+
+    button.addEventListener('click', () => {
+        const isHidden = menu.classList.toggle('hidden');
+        const Hidden = button.classList.toggle('hidden');
+        const show = buttonX.classList.remove('hidden');
+    });
+
+    buttonX.addEventListener('click', () => {
+        const isHidden = menu.classList.toggle('hidden');
+        const Hidden = button.classList.remove('hidden');
+        const show = buttonX.classList.toggle('hidden');
+    });
+</script>

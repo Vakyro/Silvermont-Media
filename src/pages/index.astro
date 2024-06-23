@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Cards from '../components/Cards.astro';
+import Cards2 from '../components/Cards2.astro';
+import Newsletter from '../components/Newsletter.astro';
+import Footer from '../components/Footer.astro';
+import WspLogo from '../components/wspLogo.astro';
+import AboutUs from '../components/AboutUs.astro';
+import Map from '../components/Map.astro';
+---
+
+<Layout title=" | SilverMont | Media">
+	<main class="sm:snap-y sm:snap-mandatory bg-white relative w-full h-screen overflow-auto text-white scroll-smooth">
+		<div class="snap-center bg-black">
+			<Hero />
+		</div>
+		<div class="snap-center">
+			<Cards />
+		</div>
+		<div class="snap-center">
+			<Cards2 />
+		</div>
+		<div>
+			<WspLogo />
+		</div>
+		<div class="snap-center">
+			<AboutUs />
+		</div>
+		<div class="snap-center">
+			<Map />
+		</div>
+		<div class="bg-gray-100 snap-center">
+			<Newsletter />	
+			<Footer />			
+		</div>
+	</main>
+</Layout>
+
+
